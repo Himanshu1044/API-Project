@@ -1,0 +1,69 @@
+<%- include('partials/header') %>
+
+<div class="container mt-4">
+
+    <% if (error) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
+
+    <% } else if (user) { %>
+        <p>Welcome, <%= user.email %>!</p>
+
+    <% } else { %>
+        <a href="/login"></a>
+    <% } %>
+
+    <% if (movie) { %>
+        <div class="card ourcard mb-4" style="width: 18rem;">
+            <img src="<%= movie.Poster %>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= movie.Title %></h5>
+                <p class="card-text"><%= movie.Plot %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Year: <%= movie.Year %></li>
+                <li class="list-group-item">Genre: <%= movie.Genre %></li>
+                <li class="list-group-item">imdbRating: <%= movie.imdbRating %></li>
+            </ul>
+            <div class="card-body">
+                <% if (user) { %>
+                    <a href="#" class="card-link disabled" style="pointer-events: none;">Add to Favorite</a>
+                <% } else { %>
+                    <a href="/login" class="card-link">Add to Favorite</a>
+                <% } %>
+            </div>
+        </div>
+
+    <% } else if (movies && movies.length > 0) { %>
+        <div class="row">
+            <% movies.forEach(m => { %>
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 100%;">
+                        <img src="<%= m.Poster %>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= m.Title %></h5>
+                            <p class="card-text"><%= m.Plot %></p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Year: <%= m.Year %></li>
+                            <li class="list-group-item">Genre: <%= m.Genre %></li>
+                            <li class="list-group-item">imdbRating: <%= m.imdbRating %></li>
+                        </ul>
+                        <div class="card-body">
+                            <% if (user) { %>
+                                <a href="#" class="card-link disabled" style="pointer-events: none;">Add to Favorite</a>
+                            <% } else { %>
+                                <a href="/login" class="card-link">Login to Favorite</a>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+    <% } else { %>
+        <!-- <h3>No movies to show yet. Try searching above! 🎬</h3> -->
+    <% } %>
+
+</div>
