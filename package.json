@@ -17,7 +17,7 @@
     "ejs": "^3.1.10",
     "env": "^0.0.2",
     "express": "^5.1.0",
-    "express-session": "^1.18.1",
+    "express-session": "^1.18.2",
     "pg": "^8.16.3"
   }
 }
